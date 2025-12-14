@@ -87,7 +87,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black dark:text-white transition-colors">
+    <div className="min-h-screen bg-white text-black transition-colors">
       <div className="container px-1 text-sm max-w-4xl">
         {programs.map((program, index) => (
           <div key={`${program.title}-${index}`} className="mb-1">
