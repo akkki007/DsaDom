@@ -1,12 +1,11 @@
-export type Program = {
-  title: string;
-  code: string;
-};
+import { useState } from 'react';
 
-export const programs: Program[] = [
-  {
-    title: '1. Smallest missing positive integer in sorted array',
-    code: `#include <stdio.h>
+export default function ProgramSelector() {
+  const [selected, setSelected] = useState('');
+  const [copied, setCopied] = useState(false);
+
+  const programs = {
+    '1. Smallest missing positive integer in sorted array': `#include <stdio.h>
 
 int findsmall(int arr[], int size)
 {
@@ -31,11 +30,9 @@ int main()
     printf("Smallest missing positive integer : %d", missing);
 
     return 0;
-}`
-  },
-  {
-    title: '2. Count occurrences of each word in text',
-    code: `#include <stdio.h>
+}
+`,
+    '2. Count occurrences of each word in text': `#include <stdio.h>
 #include <string.h>
 
 int main() {
@@ -50,7 +47,7 @@ int main() {
     printf("Enter number of words: ");
     scanf("%d", &n);
 
-    printf("Enter the words:\\n");
+    printf("Enter the words:\n");
     for (int i = 0; i < n; i++) {
         scanf("%s", words[i]);
     }
@@ -75,16 +72,13 @@ int main() {
     }
 
     // output
-    printf("\\nWord Occurrences:\\n");
+    printf("\nWord Occurrences:\n");
     for (int i = 0; i < u; i++) {
-        printf("%s : %d\\n", unique[i], count[i]);
+        printf("%s : %d\n", unique[i], count[i]);
     }
 
-}`
-  },
-  {
-    title: '3. Index of target word - Binary & Linear search',
-    code: `// Binary Search
+}`,
+    '3. Index of target word - Binary & Linear search': `// Binary Search
 #include <stdio.h>
 int binarySearch(int arr[], int n, int target) {
     int l = 0, r = n - 1;
@@ -107,14 +101,11 @@ int linearSearch(int arr[], int n, int target) {
 int main() {
     int sorted[] = {1, 3, 5, 7, 9};
     int unsorted[] = {5, 2, 8, 1, 9};
-    printf("Binary: %d\\\\n", binarySearch(sorted, 5, 7));
-    printf("Linear: %d\\\\n", linearSearch(unsorted, 5, 8));
+    printf("Binary: %d\\n", binarySearch(sorted, 5, 7));
+    printf("Linear: %d\\n", linearSearch(unsorted, 5, 8));
     return 0;
-}`
-  },
-  {
-    title: '4. Sort student records - Bubble, Selection & Insertion',
-    code: `#include <stdio.h>
+}`,
+    '4. Sort student records - Bubble, Selection & Insertion': `#include <stdio.h>
 #include <string.h>
 
 struct Student {
@@ -127,10 +118,10 @@ struct Student {
 void display(struct Student s[], int n) {
     int i;
     for (i = 0; i < n; i++) {
-        printf("Name: %s | RollNo: %d | Age: %d\\n",
+        printf("Name: %s | RollNo: %d | Age: %d\n",
                s[i].name, s[i].rollNo, s[i].age);
     }
-    printf("\\n");
+    printf("\n");
 }
 
 /* Bubble Sort by RollNo */
@@ -193,27 +184,25 @@ int main() {
         {"Neha", 2, 19}
     };
 
-    printf("Original Records:\\n");
+    printf("Original Records:\n");
     display(students, n);
 
     bubbleSort(students, n);
-    printf("After Bubble Sort (by RollNo):\\n");
+    printf("After Bubble Sort (by RollNo):\n");
     display(students, n);
 
     selectionSort(students, n);
-    printf("After Selection Sort (by RollNo):\\n");
+    printf("After Selection Sort (by RollNo):\n");
     display(students, n);
 
     insertionSort(students, n);
-    printf("After Insertion Sort (by RollNo):\\n");
+    printf("After Insertion Sort (by RollNo):\n");
     display(students, n);
 
     return 0;
-}`
-  },
-  {
-    title: '5. Sort integers descending with early termination',
-    code: `#include <stdio.h>
+}
+`,
+    '5. Sort integers descending with early termination': `#include <stdio.h>
 
 #define SIZE 50
 
@@ -234,7 +223,7 @@ void display(int a[], int n) {
     for (i = 0; i < n; i++) {
         printf("%d ", a[i]);
     }
-    printf("\\n");
+    printf("\n");
 }
 
 /* Bubble Sort (Descending) */
@@ -288,37 +277,36 @@ void insertionSort(int a[], int n) {
 int main() {
     int a[SIZE], i;
 
-    printf("Enter 50 elements:\\n");
+    printf("Enter 50 elements:\n");
     for (i = 0; i < SIZE; i++) {
         scanf("%d", &a[i]);
     }
 
     /* Early termination check */
     if (isDescending(a, SIZE)) {
-        printf("\\nArray is already sorted in descending order.\\n");
+        printf("\nArray is already sorted in descending order.\n");
         display(a, SIZE);
         return 0;
     }
 
     /* Apply sorting */
     bubbleSort(a, SIZE);
-    printf("\\nAfter Bubble Sort (Descending):\\n");
+    printf("\nAfter Bubble Sort (Descending):\n");
     display(a, SIZE);
 
     selectionSort(a, SIZE);
-    printf("\\nAfter Selection Sort (Descending):\\n");
+    printf("\nAfter Selection Sort (Descending):\n");
     display(a, SIZE);
 
     insertionSort(a, SIZE);
-    printf("\\nAfter Insertion Sort (Descending):\\n");
+    printf("\nAfter Insertion Sort (Descending):\n");
     display(a, SIZE);
 
     return 0;
-}`
-  },
-  {
-    title: '6. Merge Sort & Quick Sort with comparison count',
-    code: `#include <stdio.h>
+}
+
+`,
+    '6. Merge Sort & Quick Sort with comparison count': `#include <stdio.h>
 
 int mergeComp = 0, quickComp = 0;
 
@@ -327,7 +315,7 @@ void display(int a[], int n) {
     int i;
     for (i = 0; i < n; i++)
         printf("%d ", a[i]);
-    printf("\\n");
+    printf("\n");
 }
 
 /* ---------- MERGE SORT ---------- */
@@ -401,7 +389,7 @@ int main() {
     printf("Enter size of array (max 50): ");
     scanf("%d", &n);
 
-    printf("Enter %d elements:\\n", n);
+    printf("Enter %d elements:\n", n);
     for (i = 0; i < n; i++) {
         scanf("%d", &a[i]);
         b[i] = a[i];   // copy for quick sort
@@ -409,22 +397,20 @@ int main() {
 
     /* Merge Sort */
     mergeSort(a, 0, n - 1);
-    printf("\\nArray after Merge Sort:\\n");
+    printf("\nArray after Merge Sort:\n");
     display(a, n);
-    printf("Number of comparisons in Merge Sort: %d\\n", mergeComp);
+    printf("Number of comparisons in Merge Sort: %d\n", mergeComp);
 
     /* Quick Sort */
     quickSort(b, 0, n - 1);
-    printf("\\nArray after Quick Sort:\\n");
+    printf("\nArray after Quick Sort:\n");
     display(b, n);
-    printf("Number of comparisons in Quick Sort: %d\\n", quickComp);
+    printf("Number of comparisons in Quick Sort: %d\n", quickComp);
 
     return 0;
-}`
-  },
-  {
-    title: '7. Singly linked list - Student details',
-    code: `#include <stdio.h>
+}
+`,
+    '7. Singly linked list - Student details': `#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -457,11 +443,11 @@ struct Student* createNode() {
 void display() {
     struct Student *temp = head;
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
     while (temp != NULL) {
-        printf("Roll: %d | Name: %s | Age: %d\\n",
+        printf("Roll: %d | Name: %s | Age: %d\n",
                temp->roll, temp->name, temp->age);
         temp = temp->next;
     }
@@ -511,7 +497,7 @@ void deleteNode() {
     }
 
     if (temp == NULL) {
-        printf("Record not found\\n");
+        printf("Record not found\n");
         return;
     }
 
@@ -529,13 +515,13 @@ void searchNode() {
 
     while (temp != NULL) {
         if (temp->roll == roll) {
-            printf("Found -> Roll: %d | Name: %s | Age: %d\\n",
+            printf("Found -> Roll: %d | Name: %s | Age: %d\n",
                    temp->roll, temp->name, temp->age);
             return;
         }
         temp = temp->next;
     }
-    printf("Student not found\\n");
+    printf("Student not found\n");
 }
 
 /* Reverse linked list */
@@ -564,26 +550,26 @@ void modifyRoll() {
     while (temp != NULL) {
         if (temp->roll == oldRoll) {
             temp->roll = newRoll;
-            printf("Roll number updated successfully\\n");
+            printf("Roll number updated successfully\n");
             return;
         }
         temp = temp->next;
     }
-    printf("Student not found\\n");
+    printf("Student not found\n");
 }
 
 int main() {
     int choice;
 
     while (1) {
-        printf("\\n--- MENU ---\\n");
-        printf("1. Insert Node\\n");
-        printf("2. Delete Node\\n");
-        printf("3. Search Node\\n");
-        printf("4. Reverse List\\n");
-        printf("5. Modify Roll No\\n");
-        printf("6. Display List\\n");
-        printf("7. Exit\\n");
+        printf("\n--- MENU ---\n");
+        printf("1. Insert Node\n");
+        printf("2. Delete Node\n");
+        printf("3. Search Node\n");
+        printf("4. Reverse List\n");
+        printf("5. Modify Roll No\n");
+        printf("6. Display List\n");
+        printf("7. Exit\n");
 
         printf("Enter choice: ");
         scanf("%d", &choice);
@@ -596,15 +582,13 @@ int main() {
         case 5: modifyRoll(); break;
         case 6: display(); break;
         case 7: exit(0);
-        default: printf("Invalid choice\\n");
+        default: printf("Invalid choice\n");
         }
     }
     return 0;
-}`
-  },
-  {
-    title: '8. Singly linked list - Employee PAN',
-    code: `#include <stdio.h>
+}
+`,
+    '8. Singly linked list - Employee PAN': `#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -631,11 +615,11 @@ struct PAN* createNode() {
 void display() {
     struct PAN *temp = head;
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
     while (temp != NULL) {
-        printf("PAN: %s\\n", temp->pan);
+        printf("PAN: %s\n", temp->pan);
         temp = temp->next;
     }
 }
@@ -684,7 +668,7 @@ void deleteNode() {
     }
 
     if (temp == NULL) {
-        printf("PAN not found\\n");
+        printf("PAN not found\n");
         return;
     }
 
@@ -702,12 +686,12 @@ void searchNode() {
 
     while (temp != NULL) {
         if (strcmp(temp->pan, pan) == 0) {
-            printf("PAN found: %s\\n", temp->pan);
+            printf("PAN found: %s\n", temp->pan);
             return;
         }
         temp = temp->next;
     }
-    printf("PAN not found\\n");
+    printf("PAN not found\n");
 }
 
 /* Reverse linked list */
@@ -736,26 +720,26 @@ void modifyPAN() {
     while (temp != NULL) {
         if (strcmp(temp->pan, oldPAN) == 0) {
             strcpy(temp->pan, newPAN);
-            printf("PAN updated successfully\\n");
+            printf("PAN updated successfully\n");
             return;
         }
         temp = temp->next;
     }
-    printf("PAN not found\\n");
+    printf("PAN not found\n");
 }
 
 int main() {
     int choice;
 
     while (1) {
-        printf("\\n--- MENU ---\\n");
-        printf("1. Insert PAN\\n");
-        printf("2. Delete PAN\\n");
-        printf("3. Search PAN\\n");
-        printf("4. Reverse List\\n");
-        printf("5. Modify PAN\\n");
-        printf("6. Display List\\n");
-        printf("7. Exit\\n");
+        printf("\n--- MENU ---\n");
+        printf("1. Insert PAN\n");
+        printf("2. Delete PAN\n");
+        printf("3. Search PAN\n");
+        printf("4. Reverse List\n");
+        printf("5. Modify PAN\n");
+        printf("6. Display List\n");
+        printf("7. Exit\n");
 
         printf("Enter choice: ");
         scanf("%d", &choice);
@@ -768,15 +752,13 @@ int main() {
         case 5: modifyPAN(); break;
         case 6: display(); break;
         case 7: exit(0);
-        default: printf("Invalid choice\\n");
+        default: printf("Invalid choice\n");
         }
     }
     return 0;
-}`
-  },
-  {
-    title: '9. Singly linked list - Employee Aadhar',
-    code: `#include <stdio.h>
+}
+`,
+    '9. Singly linked list - Employee Aadhar': `#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -793,7 +775,7 @@ struct Aadhar* createNode() {
 
     newNode = (struct Aadhar*)malloc(sizeof(struct Aadhar));
     if (newNode == NULL) {
-        printf("Memory allocation failed\\n");
+        printf("Memory allocation failed\n");
         return NULL;
     }
 
@@ -809,12 +791,12 @@ void display() {
     struct Aadhar *temp = head;
 
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
 
     while (temp != NULL) {
-        printf("Aadhar: %s\\n", temp->aadhar);
+        printf("Aadhar: %s\n", temp->aadhar);
         temp = temp->next;
     }
 }
@@ -852,7 +834,7 @@ void deleteNode() {
     struct Aadhar *temp = head, *prev = NULL;
 
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
 
@@ -862,7 +844,7 @@ void deleteNode() {
     if (strcmp(head->aadhar, aadhar) == 0) {
         head = head->next;
         free(temp);
-        printf("Aadhar deleted successfully\\n");
+        printf("Aadhar deleted successfully\n");
         return;
     }
 
@@ -872,13 +854,13 @@ void deleteNode() {
     }
 
     if (temp == NULL) {
-        printf("Aadhar not found\\n");
+        printf("Aadhar not found\n");
         return;
     }
 
     prev->next = temp->next;
     free(temp);
-    printf("Aadhar deleted successfully\\n");
+    printf("Aadhar deleted successfully\n");
 }
 
 /* Search a node */
@@ -891,13 +873,13 @@ void searchNode() {
 
     while (temp != NULL) {
         if (strcmp(temp->aadhar, aadhar) == 0) {
-            printf("Aadhar found: %s\\n", temp->aadhar);
+            printf("Aadhar found: %s\n", temp->aadhar);
             return;
         }
         temp = temp->next;
     }
 
-    printf("Aadhar not found\\n");
+    printf("Aadhar not found\n");
 }
 
 /* Reverse linked list */
@@ -912,7 +894,7 @@ void reverseList() {
     }
 
     head = prev;
-    printf("List reversed successfully\\n");
+    printf("List reversed successfully\n");
 }
 
 /* Modify Aadhar number */
@@ -929,27 +911,27 @@ void modifyAadhar() {
     while (temp != NULL) {
         if (strcmp(temp->aadhar, oldAadhar) == 0) {
             strcpy(temp->aadhar, newAadhar);
-            printf("Aadhar updated successfully\\n");
+            printf("Aadhar updated successfully\n");
             return;
         }
         temp = temp->next;
     }
 
-    printf("Aadhar not found\\n");
+    printf("Aadhar not found\n");
 }
 
 int main() {
     int choice;
 
     while (1) {
-        printf("\\n--- MENU ---\\n");
-        printf("1. Insert Aadhar\\n");
-        printf("2. Delete Aadhar\\n");
-        printf("3. Search Aadhar\\n");
-        printf("4. Reverse List\\n");
-        printf("5. Modify Aadhar\\n");
-        printf("6. Display List\\n");
-        printf("7. Exit\\n");
+        printf("\n--- MENU ---\n");
+        printf("1. Insert Aadhar\n");
+        printf("2. Delete Aadhar\n");
+        printf("3. Search Aadhar\n");
+        printf("4. Reverse List\n");
+        printf("5. Modify Aadhar\n");
+        printf("6. Display List\n");
+        printf("7. Exit\n");
 
         printf("Enter choice: ");
         scanf("%d", &choice);
@@ -962,16 +944,14 @@ int main() {
             case 5: modifyAadhar(); break;
             case 6: display(); break;
             case 7: exit(0);
-            default: printf("Invalid choice\\n");
+            default: printf("Invalid choice\n");
         }
     }
 
     return 0;
-}`
-  },
-  {
-    title: '10. Doubly linked list - Student details',
-    code: `#include <stdio.h>
+}
+`,
+    '10. Doubly linked list - Student details': `#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -1006,11 +986,11 @@ struct Student* createNode() {
 void display() {
     struct Student *temp = head;
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
     while (temp != NULL) {
-        printf("Roll: %d | Name: %s | Age: %d\\n",
+        printf("Roll: %d | Name: %s | Age: %d\n",
                temp->roll, temp->name, temp->age);
         temp = temp->next;
     }
@@ -1059,7 +1039,7 @@ void deleteNode() {
     }
 
     if (temp == NULL) {
-        printf("Record not found\\n");
+        printf("Record not found\n");
         return;
     }
 
@@ -1084,13 +1064,13 @@ void searchNode() {
 
     while (temp != NULL) {
         if (temp->roll == roll) {
-            printf("Found -> Roll: %d | Name: %s | Age: %d\\n",
+            printf("Found -> Roll: %d | Name: %s | Age: %d\n",
                    temp->roll, temp->name, temp->age);
             return;
         }
         temp = temp->next;
     }
-    printf("Student not found\\n");
+    printf("Student not found\n");
 }
 
 /* Modify Roll No */
@@ -1106,25 +1086,25 @@ void modifyRoll() {
     while (temp != NULL) {
         if (temp->roll == oldRoll) {
             temp->roll = newRoll;
-            printf("Roll number updated successfully\\n");
+            printf("Roll number updated successfully\n");
             return;
         }
         temp = temp->next;
     }
-    printf("Student not found\\n");
+    printf("Student not found\n");
 }
 
 int main() {
     int choice;
 
     while (1) {
-        printf("\\n--- MENU ---\\n");
-        printf("1. Insert Node\\n");
-        printf("2. Delete Node\\n");
-        printf("3. Search Node\\n");
-        printf("4. Modify Roll No\\n");
-        printf("5. Display List\\n");
-        printf("6. Exit\\n");
+        printf("\n--- MENU ---\n");
+        printf("1. Insert Node\n");
+        printf("2. Delete Node\n");
+        printf("3. Search Node\n");
+        printf("4. Modify Roll No\n");
+        printf("5. Display List\n");
+        printf("6. Exit\n");
 
         printf("Enter choice: ");
         scanf("%d", &choice);
@@ -1136,15 +1116,13 @@ int main() {
         case 4: modifyRoll(); break;
         case 5: display(); break;
         case 6: exit(0);
-        default: printf("Invalid choice\\n");
+        default: printf("Invalid choice\n");
         }
     }
     return 0;
-}`
-  },
-  {
-    title: '11. Doubly linked list - Employee PAN',
-    code: `#include <stdio.h>
+}
+`,
+    '11. Doubly linked list - Employee PAN': `#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -1173,11 +1151,11 @@ struct PAN* createNode() {
 void display() {
     struct PAN *temp = head;
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
     while (temp != NULL) {
-        printf("PAN: %s\\n", temp->pan);
+        printf("PAN: %s\n", temp->pan);
         temp = temp->next;
     }
 }
@@ -1225,7 +1203,7 @@ void deleteNode() {
     }
 
     if (temp == NULL) {
-        printf("PAN not found\\n");
+        printf("PAN not found\n");
         return;
     }
 
@@ -1250,12 +1228,12 @@ void searchNode() {
 
     while (temp != NULL) {
         if (strcmp(temp->pan, pan) == 0) {
-            printf("PAN found: %s\\n", temp->pan);
+            printf("PAN found: %s\n", temp->pan);
             return;
         }
         temp = temp->next;
     }
-    printf("PAN not found\\n");
+    printf("PAN not found\n");
 }
 
 /* Modify PAN number */
@@ -1271,25 +1249,25 @@ void modifyPAN() {
     while (temp != NULL) {
         if (strcmp(temp->pan, oldPAN) == 0) {
             strcpy(temp->pan, newPAN);
-            printf("PAN updated successfully\\n");
+            printf("PAN updated successfully\n");
             return;
         }
         temp = temp->next;
     }
-    printf("PAN not found\\n");
+    printf("PAN not found\n");
 }
 
 int main() {
     int choice;
 
     while (1) {
-        printf("\\n--- MENU ---\\n");
-        printf("1. Insert PAN\\n");
-        printf("2. Delete PAN\\n");
-        printf("3. Search PAN\\n");
-        printf("4. Modify PAN\\n");
-        printf("5. Display List\\n");
-        printf("6. Exit\\n");
+        printf("\n--- MENU ---\n");
+        printf("1. Insert PAN\n");
+        printf("2. Delete PAN\n");
+        printf("3. Search PAN\n");
+        printf("4. Modify PAN\n");
+        printf("5. Display List\n");
+        printf("6. Exit\n");
 
         printf("Enter choice: ");
         scanf("%d", &choice);
@@ -1301,15 +1279,13 @@ int main() {
         case 4: modifyPAN(); break;
         case 5: display(); break;
         case 6: exit(0);
-        default: printf("Invalid choice\\n");
+        default: printf("Invalid choice\n");
         }
     }
     return 0;
-}`
-  },
-  {
-    title: '12. Doubly linked list - Employee Aadhar',
-    code: `#include <stdio.h>
+}
+`,
+    '12. Doubly linked list - Employee Aadhar': `#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -1338,11 +1314,11 @@ struct Aadhar* createNode() {
 void display() {
     struct Aadhar *temp = head;
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
     while (temp != NULL) {
-        printf("Aadhar: %s\\n", temp->aadhar);
+        printf("Aadhar: %s\n", temp->aadhar);
         temp = temp->next;
     }
 }
@@ -1390,7 +1366,7 @@ void deleteNode() {
     }
 
     if (temp == NULL) {
-        printf("Aadhar not found\\n");
+        printf("Aadhar not found\n");
         return;
     }
 
@@ -1415,12 +1391,12 @@ void searchNode() {
 
     while (temp != NULL) {
         if (strcmp(temp->aadhar, aadhar) == 0) {
-            printf("Aadhar found: %s\\n", temp->aadhar);
+            printf("Aadhar found: %s\n", temp->aadhar);
             return;
         }
         temp = temp->next;
     }
-    printf("Aadhar not found\\n");
+    printf("Aadhar not found\n");
 }
 
 /* Modify Aadhar number */
@@ -1436,25 +1412,25 @@ void modifyAadhar() {
     while (temp != NULL) {
         if (strcmp(temp->aadhar, oldAadhar) == 0) {
             strcpy(temp->aadhar, newAadhar);
-            printf("Aadhar updated successfully\\n");
+            printf("Aadhar updated successfully\n");
             return;
         }
         temp = temp->next;
     }
-    printf("Aadhar not found\\n");
+    printf("Aadhar not found\n");
 }
 
 int main() {
     int choice;
 
     while (1) {
-        printf("\\n--- MENU ---\\n");
-        printf("1. Insert Aadhar\\n");
-        printf("2. Delete Aadhar\\n");
-        printf("3. Search Aadhar\\n");
-        printf("4. Modify Aadhar\\n");
-        printf("5. Display List\\n");
-        printf("6. Exit\\n");
+        printf("\n--- MENU ---\n");
+        printf("1. Insert Aadhar\n");
+        printf("2. Delete Aadhar\n");
+        printf("3. Search Aadhar\n");
+        printf("4. Modify Aadhar\n");
+        printf("5. Display List\n");
+        printf("6. Exit\n");
 
         printf("Enter choice: ");
         scanf("%d", &choice);
@@ -1466,15 +1442,13 @@ int main() {
         case 4: modifyAadhar(); break;
         case 5: display(); break;
         case 6: exit(0);
-        default: printf("Invalid choice\\n");
+        default: printf("Invalid choice\n");
         }
     }
     return 0;
-}`
-  },
-  {
-    title: '13. Circular linked list - Create, Delete, Search, Display',
-    code: `#include <stdio.h>
+}
+`,
+    '13. Circular linked list - Create, Delete, Search, Display': `#include <stdio.h>
 #include <stdlib.h>
 
 struct Node {
@@ -1516,7 +1490,7 @@ void display() {
     struct Node *temp;
 
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
 
@@ -1525,7 +1499,7 @@ void display() {
         printf("%d ", temp->data);
         temp = temp->next;
     } while (temp != head);
-    printf("\\n");
+    printf("\n");
 }
 
 /* Delete node from any position */
@@ -1534,7 +1508,7 @@ void deleteAtPosition() {
     struct Node *temp, *prev;
 
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
 
@@ -1568,7 +1542,7 @@ void deleteAtPosition() {
     }
 
     if (temp->next == head && i < pos) {
-        printf("Invalid position\\n");
+        printf("Invalid position\n");
         return;
     }
 
@@ -1582,7 +1556,7 @@ void search() {
     struct Node *temp;
 
     if (head == NULL) {
-        printf("List is empty\\n");
+        printf("List is empty\n");
         return;
     }
 
@@ -1592,25 +1566,25 @@ void search() {
     temp = head;
     do {
         if (temp->data == key) {
-            printf("Element found\\n");
+            printf("Element found\n");
             return;
         }
         temp = temp->next;
     } while (temp != head);
 
-    printf("Element not found\\n");
+    printf("Element not found\n");
 }
 
 int main() {
     int choice;
 
     while (1) {
-        printf("\\n--- MENU ---\\n");
-        printf("1. Create\\n");
-        printf("2. Delete from any position\\n");
-        printf("3. Search element\\n");
-        printf("4. Display\\n");
-        printf("5. Exit\\n");
+        printf("\n--- MENU ---\n");
+        printf("1. Create\n");
+        printf("2. Delete from any position\n");
+        printf("3. Search element\n");
+        printf("4. Display\n");
+        printf("5. Exit\n");
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -1621,15 +1595,13 @@ int main() {
         case 3: search(); break;
         case 4: display(); break;
         case 5: exit(0);
-        default: printf("Invalid choice\\n");
+        default: printf("Invalid choice\n");
         }
     }
     return 0;
-}`
-  },
-  {
-    title: '14. Stack - Decimal to Binary, Octal, Hexadecimal',
-    code: `#include <stdio.h>
+}
+`,
+    '14. Stack - Decimal to Binary, Octal, Hexadecimal': `#include <stdio.h>
 
 #define MAX 50
 
@@ -1673,21 +1645,19 @@ int main() {
     printf("Enter a decimal number: ");
     scanf("%d", &num);
 
-    printf("\\nBinary: ");
+    printf("\nBinary: ");
     convert(num, 2);
 
-    printf("\\nOctal: ");
+    printf("\nOctal: ");
     convert(num, 8);
 
-    printf("\\nHexadecimal: ");
+    printf("\nHexadecimal: ");
     convert(num, 16);
 
     return 0;
-}`
-  },
-  {
-    title: '15. Stack - Infix to Postfix conversion & evaluation',
-    code: `#include <stdio.h>
+}
+`,
+    '15. Stack - Infix to Postfix conversion & evaluation': `#include <stdio.h>
 #include <ctype.h>
 
 #define MAX 50
@@ -1718,7 +1688,7 @@ void infixToPostfix(char infix[], char postfix[]) {
     int i, k = 0;
     char ch;
 
-    for (i = 0; infix[i] != '\\\\0'; i++) {
+    for (i = 0; infix[i] != '\0'; i++) {
         ch = infix[i];
 
         /* If operand, add to postfix */
@@ -1747,7 +1717,7 @@ void infixToPostfix(char infix[], char postfix[]) {
     while (top != -1)
         postfix[k++] = pop();
 
-    postfix[k] = '\\\\0';
+    postfix[k] = '\0';
 }
 
 /* Evaluate Postfix Expression */
@@ -1756,7 +1726,7 @@ int evaluatePostfix(char postfix[]) {
     int s[MAX];
     int t = -1;
 
-    for (i = 0; postfix[i] != '\\\\0'; i++) {
+    for (i = 0; postfix[i] != '\0'; i++) {
         char ch = postfix[i];
 
         /* If operand */
@@ -1786,16 +1756,14 @@ int main() {
     scanf("%s", infix);
 
     infixToPostfix(infix, postfix);
-    printf("Postfix Expression: %s\\n", postfix);
+    printf("Postfix Expression: %s\n", postfix);
 
-    printf("Result: %d\\n", evaluatePostfix(postfix));
+    printf("Result: %d\n", evaluatePostfix(postfix));
 
     return 0;
-}`
-  },
-  {
-    title: '16. Queue - Linear Queue',
-    code: `#include <stdio.h>
+}
+`,
+    '16. Queue - Linear Queue': `#include <stdio.h>
 #define MAX 50
 
 int queue[MAX];
@@ -1804,55 +1772,55 @@ int front = -1, rear = -1;
 /* Enqueue operation */
 void enqueue(int x) {
     if (rear == MAX - 1) {
-        printf("Queue is Full\\n");
+        printf("Queue is Full\n");
         return;
     }
     if (front == -1)
         front = 0;
     queue[++rear] = x;
-    printf("Inserted: %d\\n", x);
+    printf("Inserted: %d\n", x);
 }
 
 /* Dequeue operation */
 void dequeue() {
     if (front == -1 || front > rear) {
-        printf("Queue is Empty\\n");
+        printf("Queue is Empty\n");
         return;
     }
-    printf("Deleted: %d\\n", queue[front++]);
+    printf("Deleted: %d\n", queue[front++]);
 }
 
 /* Peek operation */
 void peek() {
     if (front == -1 || front > rear) {
-        printf("Queue is Empty\\n");
+        printf("Queue is Empty\n");
     } else {
-        printf("Front element: %d\\n", queue[front]);
+        printf("Front element: %d\n", queue[front]);
     }
 }
 
 /* Display operation */
 void display() {
     if (front == -1 || front > rear) {
-        printf("Queue is Empty\\n");
+        printf("Queue is Empty\n");
         return;
     }
     printf("Queue elements: ");
     for (int i = front; i <= rear; i++)
         printf("%d ", queue[i]);
-    printf("\\n");
+    printf("\n");
 }
 
 int main() {
     int choice, value;
 
     do {
-        printf("\\n--- Linear Queue Menu ---\\n");
-        printf("1. Enqueue\\n");
-        printf("2. Dequeue\\n");
-        printf("3. Peek\\n");
-        printf("4. Display\\n");
-        printf("5. Exit\\n");
+        printf("\n--- Linear Queue Menu ---\n");
+        printf("1. Enqueue\n");
+        printf("2. Dequeue\n");
+        printf("3. Peek\n");
+        printf("4. Display\n");
+        printf("5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -1872,19 +1840,17 @@ int main() {
                 display();
                 break;
             case 5:
-                printf("Exiting program...\\n");
+                printf("Exiting program...\n");
                 break;
             default:
-                printf("Invalid choice\\n");
+                printf("Invalid choice\n");
         }
     } while (choice != 5);
 
     return 0;
-}`
-  },
-  {
-    title: '17. Queue - Double Ended Queue (Deque)',
-    code: `#include <stdio.h>
+}
+`,
+    '17. Queue - Double Ended Queue (Deque)': `#include <stdio.h>
 #define MAX 50
 
 int deque[MAX];
@@ -1893,7 +1859,7 @@ int front = -1, rear = -1;
 /* Insert at Front */
 void enqueueFront(int x) {
     if (front == 0) {
-        printf("Deque is Full at Front\\n");
+        printf("Deque is Full at Front\n");
         return;
     }
     if (front == -1) {
@@ -1902,13 +1868,13 @@ void enqueueFront(int x) {
         front--;
     }
     deque[front] = x;
-    printf("Inserted at front: %d\\n", x);
+    printf("Inserted at front: %d\n", x);
 }
 
 /* Insert at Rear */
 void enqueueRear(int x) {
     if (rear == MAX - 1) {
-        printf("Deque is Full at Rear\\n");
+        printf("Deque is Full at Rear\n");
         return;
     }
     if (rear == -1) {
@@ -1917,16 +1883,16 @@ void enqueueRear(int x) {
         rear++;
     }
     deque[rear] = x;
-    printf("Inserted at rear: %d\\n", x);
+    printf("Inserted at rear: %d\n", x);
 }
 
 /* Delete from Front */
 void dequeueFront() {
     if (front == -1) {
-        printf("Deque is Empty\\n");
+        printf("Deque is Empty\n");
         return;
     }
-    printf("Deleted from front: %d\\n", deque[front]);
+    printf("Deleted from front: %d\n", deque[front]);
     if (front == rear) {
         front = rear = -1;
     } else {
@@ -1937,10 +1903,10 @@ void dequeueFront() {
 /* Delete from Rear */
 void dequeueRear() {
     if (rear == -1) {
-        printf("Deque is Empty\\n");
+        printf("Deque is Empty\n");
         return;
     }
-    printf("Deleted from rear: %d\\n", deque[rear]);
+    printf("Deleted from rear: %d\n", deque[rear]);
     if (front == rear) {
         front = rear = -1;
     } else {
@@ -1951,36 +1917,36 @@ void dequeueRear() {
 /* Peek Front */
 void peekFront() {
     if (front == -1) {
-        printf("Deque is Empty\\n");
+        printf("Deque is Empty\n");
     } else {
-        printf("Front element: %d\\n", deque[front]);
+        printf("Front element: %d\n", deque[front]);
     }
 }
 
 /* Display */
 void display() {
     if (front == -1) {
-        printf("Deque is Empty\\n");
+        printf("Deque is Empty\n");
         return;
     }
     printf("Deque elements: ");
     for (int i = front; i <= rear; i++)
         printf("%d ", deque[i]);
-    printf("\\n");
+    printf("\n");
 }
 
 int main() {
     int choice, value;
 
     do {
-        printf("\\n--- DEQUE Menu ---\\n");
-        printf("1. Enqueue Front\\n");
-        printf("2. Enqueue Rear\\n");
-        printf("3. Dequeue Front\\n");
-        printf("4. Dequeue Rear\\n");
-        printf("5. Peek Front\\n");
-        printf("6. Display\\n");
-        printf("7. Exit\\n");
+        printf("\n--- DEQUE Menu ---\n");
+        printf("1. Enqueue Front\n");
+        printf("2. Enqueue Rear\n");
+        printf("3. Dequeue Front\n");
+        printf("4. Dequeue Rear\n");
+        printf("5. Peek Front\n");
+        printf("6. Display\n");
+        printf("7. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -2008,19 +1974,17 @@ int main() {
                 display();
                 break;
             case 7:
-                printf("Exiting program...\\n");
+                printf("Exiting program...\n");
                 break;
             default:
-                printf("Invalid choice\\n");
+                printf("Invalid choice\n");
         }
     } while (choice != 7);
 
     return 0;
-}`
-  },
-  {
-    title: '18. Trees - Binary Tree traversals',
-    code: `#include <stdio.h>
+}
+`,
+    '18. Trees - Binary Tree traversals': `#include <stdio.h>
 #include <stdlib.h>
 
 /* Structure of tree node */
@@ -2082,12 +2046,12 @@ int main() {
     int choice, value;
 
     do {
-        printf("\\n--- Binary Tree Menu ---\\n");
-        printf("1. Insert Node\\n");
-        printf("2. Inorder Traversal\\n");
-        printf("3. Preorder Traversal\\n");
-        printf("4. Postorder Traversal\\n");
-        printf("5. Exit\\n");
+        printf("\n--- Binary Tree Menu ---\n");
+        printf("1. Insert Node\n");
+        printf("2. Inorder Traversal\n");
+        printf("3. Preorder Traversal\n");
+        printf("4. Postorder Traversal\n");
+        printf("5. Exit\n");
         printf("Enter choice: ");
         scanf("%d", &choice);
 
@@ -2101,36 +2065,35 @@ int main() {
             case 2:
                 printf("Inorder: ");
                 inorder(root);
-                printf("\\n");
+                printf("\n");
                 break;
 
             case 3:
                 printf("Preorder: ");
                 preorder(root);
-                printf("\\n");
+                printf("\n");
                 break;
 
             case 4:
                 printf("Postorder: ");
                 postorder(root);
-                printf("\\n");
+                printf("\n");
                 break;
 
             case 5:
-                printf("Exiting program...\\n");
+                printf("Exiting program...\n");
                 break;
 
             default:
-                printf("Invalid choice\\n");
+                printf("Invalid choice\n");
         }
     } while (choice != 5);
 
     return 0;
-}`
-  },
-  {
-    title: '19. Trees - BST traversal & search',
-    code: `#include <stdio.h>
+}
+
+`,
+    '19. Trees - BST traversal & search': `#include <stdio.h>
 #include <stdlib.h>
 
 /* Structure of BST node */
@@ -2190,11 +2153,11 @@ void postorder(struct node* root) {
 /* Search in BST */
 void search(struct node* root, int key) {
     if (root == NULL) {
-        printf("Element not found\\n");
+        printf("Element not found\n");
         return;
     }
     if (key == root->data) {
-        printf("Element found\\n");
+        printf("Element found\n");
         return;
     }
     if (key < root->data)
@@ -2208,13 +2171,13 @@ int main() {
     int choice, value;
 
     do {
-        printf("\\n--- Binary Search Tree Menu ---\\n");
-        printf("1. Insert\\n");
-        printf("2. Inorder Traversal\\n");
-        printf("3. Preorder Traversal\\n");
-        printf("4. Postorder Traversal\\n");
-        printf("5. Search\\n");
-        printf("6. Exit\\n");
+        printf("\n--- Binary Search Tree Menu ---\n");
+        printf("1. Insert\n");
+        printf("2. Inorder Traversal\n");
+        printf("3. Preorder Traversal\n");
+        printf("4. Postorder Traversal\n");
+        printf("5. Search\n");
+        printf("6. Exit\n");
         printf("Enter choice: ");
         scanf("%d", &choice);
 
@@ -2228,19 +2191,19 @@ int main() {
             case 2:
                 printf("Inorder: ");
                 inorder(root);
-                printf("\\n");
+                printf("\n");
                 break;
 
             case 3:
                 printf("Preorder: ");
                 preorder(root);
-                printf("\\n");
+                printf("\n");
                 break;
 
             case 4:
                 printf("Postorder: ");
                 postorder(root);
-                printf("\\n");
+                printf("\n");
                 break;
 
             case 5:
@@ -2250,20 +2213,19 @@ int main() {
                 break;
 
             case 6:
-                printf("Exiting program...\\n");
+                printf("Exiting program...\n");
                 break;
 
             default:
-                printf("Invalid choice\\n");
+                printf("Invalid choice\n");
         }
     } while (choice != 6);
 
     return 0;
-}`
-  },
-  {
-    title: '20. Trees - BST deletion',
-    code: `#include <stdio.h>
+}
+
+`,
+    '20. Trees - BST deletion': `#include <stdio.h>
 #include <stdlib.h>
 
 /* BST node structure */
@@ -2352,11 +2314,11 @@ int main() {
     int choice, value;
 
     do {
-        printf("\\n--- BST Menu ---\\n");
-        printf("1. Insert\\n");
-        printf("2. Inorder Traversal\\n");
-        printf("3. Delete Node\\n");
-        printf("4. Exit\\n");
+        printf("\n--- BST Menu ---\n");
+        printf("1. Insert\n");
+        printf("2. Inorder Traversal\n");
+        printf("3. Delete Node\n");
+        printf("4. Exit\n");
         printf("Enter choice: ");
         scanf("%d", &choice);
 
@@ -2370,7 +2332,7 @@ int main() {
             case 2:
                 printf("Inorder Traversal: ");
                 inorder(root);
-                printf("\\n");
+                printf("\n");
                 break;
 
             case 3:
@@ -2380,20 +2342,18 @@ int main() {
                 break;
 
             case 4:
-                printf("Exiting program...\\n");
+                printf("Exiting program...\n");
                 break;
 
             default:
-                printf("Invalid choice\\n");
+                printf("Invalid choice\n");
         }
     } while (choice != 4);
 
     return 0;
-}`
-  },
-  {
-    title: '21. Trees - BST min & max element',
-    code: `#include <stdio.h>
+}
+`,
+    '21. Trees - BST min & max element': `#include <stdio.h>
 #include <stdlib.h>
 
 /* BST node structure */
@@ -2455,12 +2415,12 @@ int main() {
     int choice, value;
 
     do {
-        printf("\\n--- BST Menu ---\\n");
-        printf("1. Insert\\n");
-        printf("2. Inorder Traversal\\n");
-        printf("3. Display Minimum\\n");
-        printf("4. Display Maximum\\n");
-        printf("5. Exit\\n");
+        printf("\n--- BST Menu ---\n");
+        printf("1. Insert\n");
+        printf("2. Inorder Traversal\n");
+        printf("3. Display Minimum\n");
+        printf("4. Display Maximum\n");
+        printf("5. Exit\n");
         printf("Enter choice: ");
         scanf("%d", &choice);
 
@@ -2474,38 +2434,36 @@ int main() {
             case 2:
                 printf("Inorder Traversal: ");
                 inorder(root);
-                printf("\\n");
+                printf("\n");
                 break;
 
             case 3:
                 if (root == NULL)
-                    printf("Tree is empty\\n");
+                    printf("Tree is empty\n");
                 else
-                    printf("Minimum element: %d\\n", findMin(root));
+                    printf("Minimum element: %d\n", findMin(root));
                 break;
 
             case 4:
                 if (root == NULL)
-                    printf("Tree is empty\\n");
+                    printf("Tree is empty\n");
                 else
-                    printf("Maximum element: %d\\n", findMax(root));
+                    printf("Maximum element: %d\n", findMax(root));
                 break;
 
             case 5:
-                printf("Exiting program...\\n");
+                printf("Exiting program...\n");
                 break;
 
             default:
-                printf("Invalid choice\\n");
+                printf("Invalid choice\n");
         }
     } while (choice != 5);
 
     return 0;
-}`
-  },
-  {
-    title: '22. Graphs - Breadth First Search (BFS)',
-    code: `#include <stdio.h>
+}
+`,
+    '22. Graphs - Breadth First Search (BFS)': `#include <stdio.h>
 
 #define MAX 10
 
@@ -2562,7 +2520,7 @@ int main() {
     printf("Enter number of vertices: ");
     scanf("%d", &n);
 
-    printf("Enter adjacency matrix:\\n");
+    printf("Enter adjacency matrix:\n");
     for (i = 0; i < n; i++)
         for (j = 0; j < n; j++)
             scanf("%d", &adj[i][j]);
@@ -2573,11 +2531,9 @@ int main() {
     BFS(start);
 
     return 0;
-}`
-  },
-  {
-    title: '23. Graphs - Depth First Search (DFS)',
-    code: `#include <stdio.h>
+}
+`,
+    '23. Graphs - Depth First Search (DFS)': `#include <stdio.h>
 
 #define MAX 10
 
@@ -2604,7 +2560,7 @@ int main() {
     printf("Enter number of vertices: ");
     scanf("%d", &n);
 
-    printf("Enter adjacency matrix:\\n");
+    printf("Enter adjacency matrix:\n");
     for (i = 0; i < n; i++)
         for (j = 0; j < n; j++)
             scanf("%d", &adj[i][j]);
@@ -2619,11 +2575,10 @@ int main() {
     DFS(start);
 
     return 0;
-}`
-  },
-  {
-    title: '24. Hashing - Hash Table using Linear Probing',
-    code: `#include <stdio.h>
+}
+
+`,
+    '24. Hashing - Hash Table using Linear Probing': `#include <stdio.h>
 
 #define SIZE 10
 
@@ -2648,7 +2603,7 @@ void insert(int key) {
         index = (index + 1) % SIZE;
     }
     hashTable[index] = key;
-    printf("Inserted %d\\n", key);
+    printf("Inserted %d\n", key);
 }
 
 /* Search key */
@@ -2658,24 +2613,24 @@ void search(int key) {
 
     while (hashTable[index] != -1) {
         if (hashTable[index] == key) {
-            printf("Key %d found at index %d\\n", key, index);
+            printf("Key %d found at index %d\n", key, index);
             return;
         }
         index = (index + 1) % SIZE;
         if (index == start)
             break;
     }
-    printf("Key not found\\n");
+    printf("Key not found\n");
 }
 
 /* Display hash table */
 void display() {
-    printf("Hash Table:\\n");
+    printf("Hash Table:\n");
     for (int i = 0; i < SIZE; i++) {
         if (hashTable[i] == -1)
-            printf("Index %d : Empty\\n", i);
+            printf("Index %d : Empty\n", i);
         else
-            printf("Index %d : %d\\n", i, hashTable[i]);
+            printf("Index %d : %d\n", i, hashTable[i]);
     }
 }
 
@@ -2685,11 +2640,11 @@ int main() {
     init();
 
     do {
-        printf("\\n--- Hash Table Menu ---\\n");
-        printf("1. Insert\\n");
-        printf("2. Search\\n");
-        printf("3. Display\\n");
-        printf("4. Exit\\n");
+        printf("\n--- Hash Table Menu ---\n");
+        printf("1. Insert\n");
+        printf("2. Search\n");
+        printf("3. Display\n");
+        printf("4. Exit\n");
         printf("Enter choice: ");
         scanf("%d", &choice);
 
@@ -2711,15 +2666,63 @@ int main() {
                 break;
 
             case 4:
-                printf("Exiting program...\\n");
+                printf("Exiting program...\n");
                 break;
 
             default:
-                printf("Invalid choice\\n");
+                printf("Invalid choice\n");
         }
     } while (choice != 4);
 
     return 0;
 }`
-  }
-];
+  };
+
+  const handleCopy = async () => {
+    if (selected && programs[selected]) {
+      await navigator.clipboard.writeText(programs[selected]);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <div style={{ marginBottom: '20px' }}>
+        <select
+          value={selected}
+          onChange={(e) => setSelected(e.target.value)}
+          style={{ padding: '5px', fontSize: '14px' }}
+        >
+          <option value="">Select Program</option>
+          {Object.keys(programs).map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {selected && (
+        <div>
+          <button
+            onClick={handleCopy}
+            style={{ 
+              padding: '5px 10px', 
+              marginBottom: '10px',
+              cursor: 'pointer'
+            }}
+          >
+            {copied ? 'Copied!' : 'Copy'}
+          </button>
+          
+          <pre style={{ 
+            fontSize: '10px'
+          }}>
+            <code>{programs[selected]}</code>
+          </pre>
+        </div>
+      )}
+    </div>
+  );
+}
